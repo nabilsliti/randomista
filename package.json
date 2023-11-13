@@ -26,6 +26,11 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "countries-list": "^3.0.6",
+    "date-fns": "^2.30.0",
+    "lorem-ipsum": "^2.0.8",
+    "randexp": "^0.5.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
@@ -80,7 +85,10 @@
     "url": "git+https://github.com/nabilsliti/randomista.git"
   },
   "homepage": "https://github.com/nabilsliti/randomista#readme",
-  "keywords": ["random, generator, data, faker, mock, diverse"],
-  "author": "Nabil Sliti",
+  "keywords": ["random", "generator", "data", "fake", "mock", "diverse", "schema", "json"],
+  "author": {
+    "name": "Nabil Sliti",
+    "email": "nabil.sliti.prod@gmail.com"
+  },
   "license": "MIT"
 }

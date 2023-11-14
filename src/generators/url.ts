@@ -1,16 +1,16 @@
 import { DOMAINS, PROTOCOLS } from '../constants';
 import { getRandomValue } from './value';
-import { getRandomWord } from './word';
+import { getRandomWord } from './string';
 import { IUrlSchema } from '../interfaces';
 
 /**
  * Generate random url
- * @param {Partial<IDateSchema>} options
- * @param {Array<string>} options._values_ - Predefined list of urls to be used to generate an URL
- * @param {Array<string>} options._protocols_ - Predefined list of protocols to be used to generate an URL
- * @param {Array<string>} options._domains_ - Predefined list of domains to be used to generate an URL
- * @param {Array<string>} options._ports_ - Predefined list of ports to be used to generate an URL
- * @param {Array<string>} options._paths_ - Predefined list of paths to be used to generate an URL
+ * @param {Partial<IUrlSchema>} urlSchema
+ * @param {Array<string>} urlSchema._values_ - Predefined list of urls to be used to generate a random URL
+ * @param {Array<string>} urlSchema._protocols_ - Predefined list of protocols to be used to generate a random URL
+ * @param {Array<string>} urlSchema._domains_ - Predefined list of domains to be used to generate a random URL
+ * @param {Array<string>} urlSchema._ports_ - Predefined list of ports to be used to generate a random URL
+ * @param {Array<string>} urlSchema._paths_ - Predefined list of paths to be used to generate a random URL
  * @returns random url
  */
 export const getRandomUrl = ({ _values_, _protocols_, _domains_, _ports_, _paths_ }: Partial<IUrlSchema> = {}): string => {

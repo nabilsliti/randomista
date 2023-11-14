@@ -1,6 +1,7 @@
 import { DEFAULT_ARRAY_LENGTH } from './constants';
 import { EKeys, EType } from './enums';
 import {
+    getRandomAddress,
     getRandomBoolean,
     getRandomCardNumber,
     getRandomCity,
@@ -11,25 +12,31 @@ import {
     getRandomDate,
     getRandomDateTime,
     getRandomEmail,
-    getRandomId,
     getRandomIPAddress,
     getRandomNumber,
-    getRandomPerson,
     getRandomRegex,
     getRandomSentence,
+    getRandomStreet,
     getRandomTime,
     getRandomUrl,
+    getRandomUser,
+    getRandomUuid,
     getRandomValue,
     getRandomWord,
     getRandomZipCode
 } from './generators';
+import { getRandomColor } from './generators/color';
 import {
-    ICardNumber,
+    IAddress,
+    IAddressSchema,
+    ICardNumberSchema,
     ICitySchema,
     ICollection,
     ICollectionField,
-    ICountrySchema,
+    IColorSchema,
     ICountryCodeSchema,
+    ICountrySchema,
+    ICreditCard,
     ICreditCardSchema,
     ICurrencySchema,
     IDateSchema,
@@ -37,13 +44,15 @@ import {
     IEmailSchema,
     INumberSchema,
     IOptions,
-    IPersonSchema,
     IRegexSchema,
     ISchema,
     ISentenceSchema,
     ISimpleField,
+    IStreetSchema,
     ITimeSchema,
     IUrlSchema,
+    IUser,
+    IUserSchema,
     IWordSchema,
     IZipCodeSchema
 } from './interfaces';
@@ -52,13 +61,22 @@ import {
  * Generate a random value for a given type
  * @param {ISimpleField | ICollectionField} type - Type of the field to generate
  * @param {IOptions} options - Options of the field to generate
- * @returns {string | number | boolean | ICollection | Array<ISimpleField>} A random value(s) of the given type
+ * @returns {string | number | boolean | IUser | ICollection | Array<ISimpleField>} A random value(s) of the given type
  */
 const getRandomDatum = (type: ISimpleField | ICollectionField, options: IOptions = {}):
-    string | number | boolean | ICollection | Array<ISimpleField> => {
+    string | number | boolean | IUser | IAddress | ICreditCard | ICollection | Array<ISimpleField> => {
     switch (type) {
         case EType.WORD:
             return getRandomWord(options as Partial<IWordSchema>);
+
+        case EType.SENTENCE:
+            return getRandomSentence(options as Partial<ISentenceSchema>);
+
+        case EType.EMAIL:
+            return getRandomEmail(options as Partial<IEmailSchema>);
+
+        case EType.REGEX:
+            return getRandomRegex(options as Partial<IRegexSchema>);
 
         case EType.BOOLEAN:
             return getRandomBoolean();
@@ -75,26 +93,23 @@ const getRandomDatum = (type: ISimpleField | ICollectionField, options: IOptions
         case EType.TIME:
             return getRandomTime(options as Partial<ITimeSchema>);
 
-        case EType.EMAIL:
-            return getRandomEmail(options as Partial<IEmailSchema>);
-
         case EType.ID:
-            return getRandomId();
+            return getRandomUuid();
 
         case EType.IP:
             return getRandomIPAddress();
 
-        case EType.REGEX:
-            return getRandomRegex(options as Partial<IRegexSchema>);
-
-        case EType.SENTENCE:
-            return getRandomSentence(options as Partial<ISentenceSchema>);
-
         case EType.URL:
             return getRandomUrl(options as Partial<IUrlSchema>);
 
+        case EType.ADDRESS:
+            return getRandomAddress(options as Partial<IAddressSchema>);
+
         case EType.ZIP_CODE:
             return getRandomZipCode(options as Partial<IZipCodeSchema>);
+
+        case EType.STREET:
+            return getRandomStreet(options as Partial<IStreetSchema>);
 
         case EType.CITY:
             return getRandomCity(options as Partial<ICitySchema>);
@@ -105,17 +120,20 @@ const getRandomDatum = (type: ISimpleField | ICollectionField, options: IOptions
         case EType.COUNTRY_CODE:
             return getRandomCountryCode(options as Partial<ICountryCodeSchema>);
 
-        case EType.CURRENCY:
-            return getRandomCurrency(options as Partial<ICurrencySchema>);
-
-        case EType.CARD_NUMBER:
-            return getRandomCardNumber(options as Partial<ICardNumber>);
-
         case EType.CREDIT_CARD:
             return getRandomCreditCard(options as Partial<ICreditCardSchema>);
 
-        case EType.PERSON:
-            return getRandomPerson(options as Partial<IPersonSchema>);
+        case EType.CREDIT_CARD_NUMBER:
+            return getRandomCardNumber(options as Partial<ICardNumberSchema>);
+
+        case EType.CURRENCY:
+            return getRandomCurrency(options as Partial<ICurrencySchema>);
+
+        case EType.USER:
+            return getRandomUser(options as Partial<IUserSchema>);
+
+        case EType.COLOR:
+            return getRandomColor(options as Partial<IColorSchema>);
 
         case EType.OBJECT: {
             const objectData: ICollection = {};

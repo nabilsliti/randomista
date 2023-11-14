@@ -1,2 +1,2 @@
-export * from './random-generator';
+export * from './randomista';
 export * from './generators';

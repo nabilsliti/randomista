@@ -7,6 +7,7 @@ export enum EKeys {
 
 export enum EType {
     BOOLEAN = 'boolean',
+    COLOR = 'color',
     DATE = 'date',
     DATE_TIME = 'dateTime',
     TIME = 'time',
@@ -28,7 +29,10 @@ export enum EType {
     CITY = 'city',
     CURRENCY = 'currency',
     COUNTRY_CODE = 'countryCode',
-    CARD_NUMBER = 'cardNumber',
+    CREDIT_CARD_NUMBER = 'cardNumber',
     CREDIT_CARD = 'creditCard',
-    PERSON = 'person',
+    USER = 'user',
+    PHONE = 'phone',
+    ADDRESS = 'address',
+    STREET = 'street',
 }

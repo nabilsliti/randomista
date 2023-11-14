@@ -1,6 +1,6 @@
-## randomista.js
+## randomista
 
-Randomista.js is a versalile typescript library that empowers to effortlessy generate a myriad of random data
+Randomista is a versalile typescript library that empowers to effortlessy generate a myriad of random data
 
 ### Installation
 ```

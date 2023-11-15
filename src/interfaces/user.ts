@@ -1,16 +1,13 @@
-import { EType } from '../enums';
 import { IAddress } from './address';
 
 /**
  * User schema interface
  * @interface
- * @property {string} _type_ - User type (always 'user')
  * @property {Array<string>} _names_ - Predefined list of first names to be used to generate a name
  * @property {Array<string>} _emails_ - Predefined list of email to be used to generate an email
  * @property {Array<number>} _ages_ - Predefined list of ages to be used to generate an age
  */
 export interface IUserSchema {
-    _type_: EType.USER;
     _values_?: Array<IUser>;
     _usernames_?: Array<string>;
     _fullNames_?: Array<string>;
@@ -20,17 +17,6 @@ export interface IUserSchema {
     _ages_?: Array<number>;
     _phones_?: Array<string>;
     _addresses_?: Array<IAddress>;
-}
-
-/**
- * Phone schema interface
- * @interface
- * @property {string} _type_ - Phone type (always 'phone')
- * @property {Array<string>} _values_ - Predefined list of phone numbers to be used to generate a random phone number
- */
-export interface IPhoneSchema {
-    _type_: EType.PHONE;
-    _values_?: Array<string>;
 }
 
 /**

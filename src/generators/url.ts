@@ -5,7 +5,7 @@ import { IUrlSchema } from '../interfaces';
 
 /**
  * Generate random url
- * @param {Partial<IUrlSchema>} urlSchema
+ * @param {IUrlSchema} urlSchema
  * @param {Array<string>} urlSchema._values_ - Predefined list of urls to be used to generate a random URL
  * @param {Array<string>} urlSchema._protocols_ - Predefined list of protocols to be used to generate a random URL
  * @param {Array<string>} urlSchema._domains_ - Predefined list of domains to be used to generate a random URL
@@ -13,7 +13,7 @@ import { IUrlSchema } from '../interfaces';
  * @param {Array<string>} urlSchema._paths_ - Predefined list of paths to be used to generate a random URL
  * @returns random url
  */
-export const getRandomUrl = ({ _values_, _protocols_, _domains_, _ports_, _paths_ }: Partial<IUrlSchema> = {}): string => {
+export const getRandomUrl = ({ _values_, _protocols_, _domains_, _ports_, _paths_ }: IUrlSchema = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }

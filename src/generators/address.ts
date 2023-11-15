@@ -1,22 +1,14 @@
 import { countries } from 'countries-list';
 import { DEFAULT_ZIP_CODE_FORMAT, STREETS } from '../constants';
+import { EZipCode } from '../enums';
 import { getRandomBoolean } from './boolean';
 import { getRandomValue } from './value';
 import {
     IAddress,
     IAddressSchema,
-    ICitySchema,
-    ICountryCodeSchema,
-    ICountrySchema,
-    IStreetSchema,
+    IValues,
     IZipCodeSchema
 } from '../interfaces';
-
-const zipCodeFormats = {
-    '5d': '#####', // 5-digit zip code (5d)
-    '9d': '#####-####', // 9-digit zip code (9d)
-    '5d-9d': 'any', // 5-digit and 9-digit zip code (5d and 9d)
-};
 
 const getCountryCodes = (): Array<string> => Object.keys(countries);
 
@@ -27,7 +19,7 @@ const getCountry = () => {
 
 /**
  * Generate a random address
- * @param {Partial<ICitySchema>} addressSchema
+ * @param {IAddressSchema} addressSchema
  * @param {Array<IAddress>} addressSchema._values__ - Predefined list of address to be used to generate a random address
  * @param {Array<string>} addressSchema._zips__ - Predefined list of zip codes to be used to generate a random zip code
  * @param {Array<string>} addressSchema._streets_ - Predefined list of streets to be used to generate a random street
@@ -35,7 +27,7 @@ const getCountry = () => {
  * @param {Array<string>} addressSchema._countries_ - Predefined list of countries to be used to generate a random country
  * @returns {IAddress} random address
  */
-export const getRandomAddress = (addressSchema: Partial<IAddressSchema> = {}): IAddress => {
+export const getRandomAddress = (addressSchema: IAddressSchema = {}): IAddress => {
     if (Boolean(addressSchema._values_?.length)) {
         return getRandomValue(addressSchema?._values_);
     }
@@ -51,33 +43,33 @@ export const getRandomAddress = (addressSchema: Partial<IAddressSchema> = {}): I
 
 /**
  * Generate a random zip code
- * @param {Partial<IZipCodeSchema>} zipCodeSchema
+ * @param {IZipCodeSchema} zipCodeSchema
  * @param {Array<string>} zipCodeSchema._values_ - Predefined list of zip code to be used to return a random a zip code
- * @param {string} zipCodeSchema._format_ - The format of the zip code (default value DEFAULT_ZIP_CODE_FORMAT = '5d')
+ * @param {string} zipCodeSchema._format_ - The format of the zip code (default value DEFAULT_ZIP_CODE_FORMAT = 'any')
  * @throws {Error} error if the zip code is not valid (other than '5d', '9d' or 'any')
  * @returns {string} random zip code
  */
-export const getRandomZipCode = ({ _values_, _format_ = DEFAULT_ZIP_CODE_FORMAT }: Partial<IZipCodeSchema> = {}): string => {
+export const getRandomZipCode = ({ _values_, _format_ = DEFAULT_ZIP_CODE_FORMAT }: IZipCodeSchema = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }
 
-    if (!Object.keys(zipCodeFormats).includes(_format_ as string)) {
+    if (!Object.keys(EZipCode).includes(_format_ as string)) {
         throw new Error(`Invalid zip code format ${ _format_ }`);
     }
 
     const randomZipCode = () => (Math.floor(Math.random() * 10)).toString();
-    const format = _format_ !== 'any' ? zipCodeFormats[ _format_ ] : (getRandomBoolean() ? '#####' : '#####-####');
+    const format = _format_ !== 'any' ? EZipCode[ _format_ ] : (getRandomBoolean() ? EZipCode[ '5d' ] : EZipCode[ '9d' ]);
     return format.replace(/#/g, randomZipCode);
 };
 
 /**
  * Generate a random country code
- * @param {Partial<ICountryCodeSchema>} countryCodeSchema
+ * @param {IValues} countryCodeSchema
  * @param {Array<string>} countryCodeSchema._values_ - Predefined list of country codes to be used to generate a random country code
  * @returns {string} random country code
  */
-export const getRandomCountryCode = ({ _values_ }: Partial<ICountryCodeSchema> = {}): string => {
+export const getRandomCountryCode = ({ _values_ }: IValues = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }
@@ -86,11 +78,11 @@ export const getRandomCountryCode = ({ _values_ }: Partial<ICountryCodeSchema> =
 
 /**
  * Generate a random country
- * @param {Partial<ICountrySchema>} countrySchema
+ * @param {IValues} countrySchema
  * @param {Array<string>} countrySchema._values_ - Predefined list of countries to be used to generate a random country
  * @returns {string} random country
  */
-export const getRandomCountry = ({ _values_ }: Partial<ICountrySchema> = {}): string => {
+export const getRandomCountry = ({ _values_ }: IValues = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }
@@ -99,11 +91,11 @@ export const getRandomCountry = ({ _values_ }: Partial<ICountrySchema> = {}): st
 
 /**
  * Generate a random city
- * @param {Partial<ICitySchema>} citySchema
+ * @param {IValues} citySchema
  * @param {Array<string>} citySchema._values_ - Predefined list of cities to be used to generate a random city
  * @returns {string} random city
  */
-export const getRandomCity = ({ _values_ }: Partial<ICitySchema> = {}): string => {
+export const getRandomCity = ({ _values_ }: IValues = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }
@@ -113,11 +105,11 @@ export const getRandomCity = ({ _values_ }: Partial<ICitySchema> = {}): string =
 
 /**
  * Generate a random street
- * @param {Partial<IStreetSchema>} streetSchema
+ * @param {IValues} streetSchema
  * @param {Array<string>} streetSchema._values_ - Predefined list of streets to be used to generate a random street
  * @returns {string} random street
  */
-export const getRandomStreet = ({ _values_ }: Partial<IStreetSchema> = {}): string => {
+export const getRandomStreet = ({ _values_ }: IValues = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }

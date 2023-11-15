@@ -1,10 +1,8 @@
-import { EType } from '../enums';
 import { ICollection } from './collection';
 
 /**
  * Date schema interface
  * @interface
- * @property {string} _type_ - Date type (always 'date')
  * @property {Date} _min_ - The minimum date value
  * @property {Date} _max_ - The maximum date value
  * @property {string} _format_ - The format of the date (use date-fns date format)
@@ -18,7 +16,6 @@ import { ICollection } from './collection';
     }`
  */
 export interface IDateSchema {
-    _type_: EType.DATE;
     _min_?: Date;
     _max_?: Date;
     _format_?: string;
@@ -28,7 +25,6 @@ export interface IDateSchema {
 /**
  * DateTime schema interface
  * @interface
- * @property {string} _type_ - DateTime type (always 'dateTime')
  * @property {Date} _min_ - The minimum date value
  * @property {Date} _max_ - The maximum date value
  * @property {string} _format_ - The format of the dateTime (use date-fns dateTime format)
@@ -42,7 +38,6 @@ export interface IDateSchema {
     }`
  */
 export interface IDateTimeSchema {
-    _type_: EType.DATE_TIME;
     _min_?: Date;
     _max_?: Date;
     _format_?: string;
@@ -52,10 +47,8 @@ export interface IDateTimeSchema {
 /**
  * Time schema interface
  * @interface
- * @property {string} _type_ - Time type (always 'time')
  * @property {string} _format_ - The format of the time (use date-fns time format)
  */
 export interface ITimeSchema {
-    _type_: EType.TIME;
     _format_?: string;
 }

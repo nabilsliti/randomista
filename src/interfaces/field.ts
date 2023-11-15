@@ -3,6 +3,7 @@ import { EType } from '../enums';
 export type ICollectionField = EType.ARRAY | EType.OBJECT;
 
 export type ISimpleField = EType.BOOLEAN |
+EType.ANIMAL |
 EType.COLOR |
 EType.DATE |
 EType.DATE_TIME |

@@ -6,6 +6,8 @@ export enum EKeys {
 }
 
 export enum EType {
+    AMOUNT = 'amount',
+    ANIMAL = 'animal',
     BOOLEAN = 'boolean',
     COLOR = 'color',
     DATE = 'date',
@@ -35,4 +37,10 @@ export enum EType {
     PHONE = 'phone',
     ADDRESS = 'address',
     STREET = 'street',
+}
+
+export enum EZipCode {
+    '5d'= '#####', // 5-digit zip code (5d)
+    '9d'= '#####-####', // 9-digit zip code (9d)
+    'any' = 'any', // 5-digit or 9-digit zip code
 }

@@ -14,6 +14,7 @@ $ npm install randomista --save
   - `strings`,
   - `users`,
   - `emails`,
+  - `phone numbers`,
   - `dates` (date, dateTime and time with multi formats),
   - `payments` (credit card detail, credit card number),
   - `ip addresses`,

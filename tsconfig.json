@@ -24,6 +24,6 @@
     "typedocOptions": {
         "entryPoints": ["src/**/*.ts"],
         "out": "docs",
-        "name": "randomista documentation"
+        "name": "Randomista"
     }
 }

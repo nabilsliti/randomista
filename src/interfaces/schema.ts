@@ -19,3 +19,12 @@ IArraySchema |
 IUrlSchema;
 
 export type ISchema = Record<string, IOptions>;
+
+/**
+ * Values schema interface
+ * @interface
+ * @property {Array<string>} _values_ - Predefined list of elements to be used to generate a random element
+ */
+export interface IValues {
+    _values_?: Array<string>;
+}

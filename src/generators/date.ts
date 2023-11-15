@@ -1,12 +1,12 @@
 import { addYears, compareAsc, differenceInMilliseconds, format } from 'date-fns';
-import { FORMAT_DATE, FORMAT_DATE_TIME, FORMAT_TIME, GAP_MAX_YEARS, START_DATE } from '../constants';
+import { FORMAT_DATE, FORMAT_DATE_TIME, FORMAT_TIME, GAP_YEARS } from '../constants';
 import { IDateSchema, IDateTimeSchema, ITimeSchema } from '../interfaces';
 
 /**
  * Generate a random dateTime value
- * @param {Partial<IDateTimeSchema>} dateTimeSchema
- * @param {Date} dateTimeSchema._min_ - The minimum dateTime to generate (default START_DATE = new Date())
- * @param {Date} dateTimeSchema._max_ - The maximum dateTime to generate (default START_DATE + GAP_MAX_YEARS)
+ * @param {IDateTimeSchema} dateTimeSchema
+ * @param {Date} dateTimeSchema._min_ - The minimum dateTime to generate (default new Date() - GAP_YEARS)
+ * @param {Date} dateTimeSchema._max_ - The maximum dateTime to generate (default new Date() + GAP_YEARS)
  * @param {string} dateTimeSchema._format_ - The format (date-fns) of the dateTime value to generate
  * (default FORMAT_DATE_TIME = `yyyy-MM-dd'T'HH:mm:ss.SSSXXX`)
  * @param {ICollection} dateTimeSchema._options_ - Date-fns format options
@@ -22,12 +22,13 @@ import { IDateSchema, IDateTimeSchema, ITimeSchema } from '../interfaces';
  */
 
 export const getRandomDateTime = ({
-    _min_ = START_DATE,
+    _min_,
     _max_,
     _format_ = FORMAT_DATE_TIME,
     _options_
-}: Partial<IDateTimeSchema> = {}): string => {
-    _max_ ||= addYears(new Date(), GAP_MAX_YEARS);
+}: IDateTimeSchema = {}): string => {
+    _min_ ||= addYears(new Date(), -GAP_YEARS),
+    _max_ ||= addYears(new Date(), GAP_YEARS);
     if (compareAsc(_min_, _max_) > 0) {
         throw new Error(`Minimum date (${ _max_ }) cannot exceed maximum date (${ _max_ }).`,);
     }
@@ -39,9 +40,9 @@ export const getRandomDateTime = ({
 
 /**
  * Generate a random date value
- * @param {Partial<IDateSchema>} dateSchema
- * @param {Date} dateSchema._min_ - The minimum date to generate (default START_DATE = new Date())
- * @param {Date} dateSchema._max_ - The maximum date to generate (default START_DATE + GAP_MAX_YEARS)
+ * @param {IDateSchema} dateSchema
+ * @param {Date} dateSchema._min_ - The minimum date to generate (default new Date() - GAP_YEARS)
+ * @param {Date} dateSchema._max_ - The maximum date to generate (default new Date() + GAP_YEARS)
  * @param {string} dateSchema._format_ - The format (date-fns) of the date value to generate  (default FORMAT_DATE = 'dd/MM/yyyy')
  * @param {ICollection} dateSchema._options_ - Date-fns format options
  *  `_options_ = {
@@ -53,13 +54,18 @@ export const getRandomDateTime = ({
     }`
  * @returns {string} random date value
  */
-export const getRandomDate = ({ _min_ = START_DATE, _max_, _format_ = FORMAT_DATE, _options_ }: Partial<IDateSchema> = {}): string =>
+export const getRandomDate = ({
+    _min_,
+    _max_,
+    _format_ = FORMAT_DATE,
+    _options_
+}: IDateSchema = {}): string =>
     getRandomDateTime({ _min_, _max_, _format_, _options_ });
 
 /**
  * Generate a random time
- * @param {Partial<ITimeSchema>} timeSchema
+ * @param {ITimeSchema} timeSchema
  * @param {string} timeSchema._format_ - The format (date-fns) of the time value to generate (default FORMAT_TIME = 'HH:mm:ss')
  * @returns {string} random time value
  */
-export const getRandomTime = ({ _format_ = FORMAT_TIME }: Partial<ITimeSchema> = {}): string => getRandomDateTime({ _format_ });
+export const getRandomTime = ({ _format_ = FORMAT_TIME }: ITimeSchema = {}): string => getRandomDateTime({ _format_ });

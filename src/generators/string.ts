@@ -5,13 +5,13 @@ import { MAXIMUM_WORD, MINIMUM_WORD } from '../constants';
 
 /**
  * Generate a random word
- * @param {Partial<IWordSchema>} wordSchema
+ * @param {IWordSchema} wordSchema
  * @param {Array<string>} wordSchema._values_ - Predefined list of words to be used to generate a word
  * @param {string} wordSchema._prefix_ The prefix of the word to generate
  * @param {string} wordSchema._suffix_ The suffix of the word to generate
  * @returns {string} random word
  */
-export const getRandomWord = ({ _values_, _prefix_ = '', _suffix_ = '' }: Partial<IWordSchema> = {}): string => {
+export const getRandomWord = ({ _values_, _prefix_ = '', _suffix_ = '' }: IWordSchema = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }
@@ -25,13 +25,13 @@ export const getRandomWord = ({ _values_, _prefix_ = '', _suffix_ = '' }: Partia
 
 /**
  * Generate a random sentence
- * @param {Partial<ISentenceSchema>} sentenceSchema
+ * @param {ISentenceSchema} sentenceSchema
  * @param {Array<string>} sentenceSchema._values_ - Predefined list of sentences to be used to generate a random sentence
  * @param {number} sentenceSchema._min_ - The minimum number of words in the sentence (default MINIMUM_WORD = 10)
  * @param {number} sentenceSchema._max_ - The minimum number of words in the sentence (default MAXIMUM_WORD = 30)
  * @returns {string} random sentence
  */
-export const getRandomSentence = ({ _values_, _min_ = MINIMUM_WORD, _max_ = MAXIMUM_WORD }: Partial<ISentenceSchema> = {}): string => {
+export const getRandomSentence = ({ _values_, _min_ = MINIMUM_WORD, _max_ = MAXIMUM_WORD }: ISentenceSchema = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }

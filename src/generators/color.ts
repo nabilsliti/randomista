@@ -24,13 +24,13 @@ const getRandomRgbColor = () => `rgb(${ randomValue(256) }, ${ randomValue(256) 
 
 /**
  *  Return a random color
- * @param {Partial<IColorSchema>} colorSchema
+ * @param {IColorSchema} colorSchema
  * @property {Array<string>} colorSchema._values_ - Predefined list of colors to be used to return a random color
  * @param {string} colorSchema._format_ - The format of the color format (default value DEFAULT_COLOR_FORMAT = 'name')
  * @throws {Error} error if the color format is not valid (other than 'name', 'rgb', 'hex', 'any')
  * @returns {string} random color
  */
-export const getRandomColor = ({ _values_, _format_ = DEFAULT_COLOR_FORMAT }: Partial<IColorSchema> = {}) => {
+export const getRandomColor = ({ _values_, _format_ = DEFAULT_COLOR_FORMAT }: IColorSchema = {}) => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }

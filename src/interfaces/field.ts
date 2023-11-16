@@ -1,4 +1,9 @@
 import { EType } from '../enums';
+/**
+ * Collection interface
+ * @interface
+ */
+export type ICollection = Record<string, unknown>;
 
 export type ICollectionField = EType.ARRAY | EType.OBJECT;
 

@@ -1,7 +1,6 @@
 export * from './address';
 export * from './array';
 export * from './color';
-export * from './collection';
 export * from './date';
 export * from './field';
 export * from './number';

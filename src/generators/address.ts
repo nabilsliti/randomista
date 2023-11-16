@@ -1,5 +1,4 @@
-import { countries } from 'countries-list';
-import { DEFAULT_ZIP_CODE_FORMAT, STREETS } from '../constants';
+import { CONTINENTS, COUNTRIES, DEFAULT_ZIP_CODE_FORMAT, STREETS } from '../constants';
 import { EZipCode } from '../enums';
 import { getRandomBoolean } from './boolean';
 import { getRandomValue } from './value';
@@ -10,12 +9,7 @@ import {
     IZipCodeSchema
 } from '../interfaces';
 
-const getCountryCodes = (): Array<string> => Object.keys(countries);
-
-const getCountry = () => {
-    const randomIsoCountryCode = getRandomValue(getCountryCodes());
-    return countries[ randomIsoCountryCode ];
-};
+const getCountry = () => getRandomValue(COUNTRIES);
 
 /**
  * Generate a random address
@@ -73,7 +67,7 @@ export const getRandomCountryCode = ({ _values_ }: IValues = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }
-    return getRandomValue(getCountryCodes());
+    return getCountry().code;
 };
 
 /**
@@ -99,8 +93,7 @@ export const getRandomCity = ({ _values_ }: IValues = {}): string => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }
-    const randomCity = getCountry().capital;
-    return Boolean(randomCity) ? randomCity : getRandomCity();
+    return getCountry().capital;
 };
 
 /**
@@ -114,4 +107,17 @@ export const getRandomStreet = ({ _values_ }: IValues = {}): string => {
         return getRandomValue(_values_);
     }
     return getRandomValue(STREETS);
+};
+
+/**
+ * Generate a random continent
+ * @param {IValues} continentSchema
+ * @param {Array<string>} continentSchema._values_ - Predefined list of continents to be used to generate a random continent
+ * @returns {string} random continent
+ */
+export const getRandomContinent = ({ _values_ }: IValues = {}): string => {
+    if (Boolean(_values_?.length)) {
+        return getRandomValue(_values_);
+    }
+    return getRandomValue(CONTINENTS);
 };

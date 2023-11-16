@@ -3,9 +3,15 @@ import { IAddress } from './address';
 /**
  * User schema interface
  * @interface
- * @property {Array<string>} _names_ - Predefined list of first names to be used to generate a name
+ * @property {Array<string>} _values_ - Predefined list of users to be used to generate a user
+ * @property {Array<string>} _usernames_ - Predefined list of user names to be used to generate a random user name
+ * @property {Array<string>} _fullNames_ - Predefined list of full names to be used to generate a random full name
+ * @property {Array<string>} _firstNames_ - Predefined list of first names to be used to generate a random first name
+ * @property {Array<string>} _lastNames_ - Predefined list of last names to be used to generate a random last name
  * @property {Array<string>} _emails_ - Predefined list of email to be used to generate an email
  * @property {Array<number>} _ages_ - Predefined list of ages to be used to generate an age
+ * @property {Array<number>} _phones_ - Predefined list of phone numbers to be used to generate a random phone number
+ * @property {Array<number>} _addresses_ - Predefined list of address to be used to generate a random address
  */
 export interface IUserSchema {
     _values_?: Array<IUser>;

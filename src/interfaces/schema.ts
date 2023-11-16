@@ -1,5 +1,5 @@
 import { IArraySchema } from './array';
-import { ICollection } from './collection';
+import { ICollection } from './field';
 import { IDateSchema, IDateTimeSchema, ITimeSchema } from './date';
 import { INumberSchema } from './number';
 import { IRegexSchema } from './regex';

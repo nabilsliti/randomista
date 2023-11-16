@@ -1,4 +1,4 @@
-import { ICollection } from './collection';
+import { ICollection } from './field';
 
 /**
  * Date schema interface

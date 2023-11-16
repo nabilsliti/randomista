@@ -26,7 +26,6 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "countries-list": "^3.0.6",
     "date-fns": "^2.30.0",
     "lorem-ipsum": "^2.0.8",
     "randexp": "^0.5.3",

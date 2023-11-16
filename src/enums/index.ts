@@ -37,6 +37,7 @@ export enum EType {
     PHONE = 'phone',
     ADDRESS = 'address',
     STREET = 'street',
+    CONTINENT = 'continent'
 }
 
 export enum EZipCode {

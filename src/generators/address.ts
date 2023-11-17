@@ -57,18 +57,20 @@ export const getRandomZipCode = ({ _values_, _format_ = DEFAULT_ZIP_CODE_FORMAT 
     return format.replace(/#/g, randomZipCode);
 };
 
+const getPropertyOfRandomCountry = (values: Array<string>, property: string): string => {
+    if (Boolean(values?.length)) {
+        return getRandomValue(values);
+    }
+    return getCountry()[ property ];
+};
+
 /**
  * Generate a random country code
  * @param {IValues} countryCodeSchema
  * @param {Array<string>} countryCodeSchema._values_ - Predefined list of country codes to be used to generate a random country code
  * @returns {string} random country code
  */
-export const getRandomCountryCode = ({ _values_ }: IValues = {}): string => {
-    if (Boolean(_values_?.length)) {
-        return getRandomValue(_values_);
-    }
-    return getCountry().code;
-};
+export const getRandomCountryCode = ({ _values_ }: IValues = {}): string => getPropertyOfRandomCountry(_values_, 'code');
 
 /**
  * Generate a random country
@@ -76,12 +78,7 @@ export const getRandomCountryCode = ({ _values_ }: IValues = {}): string => {
  * @param {Array<string>} countrySchema._values_ - Predefined list of countries to be used to generate a random country
  * @returns {string} random country
  */
-export const getRandomCountry = ({ _values_ }: IValues = {}): string => {
-    if (Boolean(_values_?.length)) {
-        return getRandomValue(_values_);
-    }
-    return getCountry().name;
-};
+export const getRandomCountry = ({ _values_ }: IValues = {}): string => getPropertyOfRandomCountry(_values_, 'name');
 
 /**
  * Generate a random city
@@ -89,12 +86,7 @@ export const getRandomCountry = ({ _values_ }: IValues = {}): string => {
  * @param {Array<string>} citySchema._values_ - Predefined list of cities to be used to generate a random city
  * @returns {string} random city
  */
-export const getRandomCity = ({ _values_ }: IValues = {}): string => {
-    if (Boolean(_values_?.length)) {
-        return getRandomValue(_values_);
-    }
-    return getCountry().capital;
-};
+export const getRandomCity = ({ _values_ }: IValues = {}): string => getPropertyOfRandomCountry(_values_, 'capital');
 
 /**
  * Generate a random street
@@ -103,10 +95,8 @@ export const getRandomCity = ({ _values_ }: IValues = {}): string => {
  * @returns {string} random street
  */
 export const getRandomStreet = ({ _values_ }: IValues = {}): string => {
-    if (Boolean(_values_?.length)) {
-        return getRandomValue(_values_);
-    }
-    return getRandomValue(STREETS);
+    const values = Boolean(_values_?.length) ? _values_ : STREETS;
+    return getRandomValue(values);
 };
 
 /**
@@ -116,8 +106,6 @@ export const getRandomStreet = ({ _values_ }: IValues = {}): string => {
  * @returns {string} random continent
  */
 export const getRandomContinent = ({ _values_ }: IValues = {}): string => {
-    if (Boolean(_values_?.length)) {
-        return getRandomValue(_values_);
-    }
-    return getRandomValue(CONTINENTS);
+    const values = Boolean(_values_?.length) ? _values_ : CONTINENTS;
+    return getRandomValue(values);
 };

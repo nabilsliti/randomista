@@ -16,7 +16,7 @@ export const getRandomNumber = ({
     _min_ = MINIMUM_NUMBER,
     _max_ = MAXIMUM_NUMBER,
     _isInteger_ = false
-}: INumberSchema = {}):number => {
+}: INumberSchema = {}): number => {
     if (Boolean(_values_?.length)) {
         return getRandomValue(_values_);
     }

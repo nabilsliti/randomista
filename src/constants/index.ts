@@ -11,6 +11,7 @@ export const MINIMUM_WORD: number = 10;
 export const MAXIMUM_WORD: number = 30;
 export const DEFAULT_ZIP_CODE_FORMAT: zipCodeFormat = 'any';
 export const DEFAULT_COLOR_FORMAT: colorFormat = 'name';
+export const COLOR_FORMATS = [ 'name', 'rgb', 'hex', 'any' ];
 export const REGEX_VENDORS = {
     masterCard: '^5[1-5][0-9]{14}$',
     visa: '^4[0-9]{12}(?:[0-9]{3})?$',

@@ -9,8 +9,6 @@ import { IValues } from '../interfaces';
  * @returns {string} random animal
  */
 export const getRandomAnimal = ({ _values_ }: IValues = {}): string => {
-    if (Boolean(_values_?.length)) {
-        return getRandomValue(_values_);
-    }
-    return getRandomValue(ANIMALS);
+    const values = Boolean(_values_?.length) ? _values_ : ANIMALS;
+    return getRandomValue(values);
 };

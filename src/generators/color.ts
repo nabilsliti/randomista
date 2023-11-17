@@ -1,26 +1,19 @@
+import { COLOR_FORMATS, COLORS, DEFAULT_COLOR_FORMAT } from '../constants';
 import { colorFormat, IColorSchema } from '../interfaces';
-import { COLORS, DEFAULT_COLOR_FORMAT } from '../constants';
+import { getRandomRegex } from './regex';
 import { getRandomValue } from './value';
-
-const colorFormats = [ 'name', 'rgb', 'hex', 'any' ];
-/**
- *  Return a random number
- * @param {number} maxValue - Value max
- * @returns {number} random number
- */
-const randomValue = (maxValue) => Math.floor(Math.random() * maxValue);
 
 /**
  *  Return a random hex color
  * @returns {string} random hex color
  */
-const getRandomHexColor = () => `#${ randomValue(16777215).toString(16) }`;
+const getRandomHexColor = () => getRandomRegex({ _regex_: /^#[0-9a-fA-F]{6}$/ });
 
 /**
  *  Return a random rgb color
  * @returns {string} random Hex color
  */
-const getRandomRgbColor = () => `rgb(${ randomValue(256) }, ${ randomValue(256) }, ${ randomValue(256) })`;
+const getRandomRgbColor = () => getRandomRegex({ _regex_: /^rgb\(\d{1,3}, \d{1,3}, \d{1,3}\)$/ });
 
 /**
  *  Return a random color
@@ -35,7 +28,7 @@ export const getRandomColor = ({ _values_, _format_ = DEFAULT_COLOR_FORMAT }: IC
         return getRandomValue(_values_);
     }
 
-    if (!colorFormats.includes(_format_ as string)) {
+    if (!COLOR_FORMATS.includes(_format_ as string)) {
         throw new Error(`Invalid color code format ${ _format_ }`);
     }
     switch (_format_) {
@@ -44,7 +37,7 @@ export const getRandomColor = ({ _values_, _format_ = DEFAULT_COLOR_FORMAT }: IC
         case 'rgb':
             return getRandomRgbColor();
         case 'any':{
-            const randomFormat = getRandomValue(colorFormats) as colorFormat;
+            const randomFormat = getRandomValue(COLOR_FORMATS) as colorFormat;
             return getRandomColor({ _format_: randomFormat });
         }
         case 'name':

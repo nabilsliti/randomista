@@ -54,8 +54,8 @@ export interface IAmountSchema extends IValues {
  * @property {string} holderName - Credit card holder name
  */
 export interface ICreditCard {
-    vendor: vendor;
-    number: string,
+    vendor?: vendor;
+    number?: string,
     expirationDate?: string,
     ccv?: string,
     holderName?: string

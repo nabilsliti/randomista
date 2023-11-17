@@ -58,10 +58,8 @@ export const getRandomCreditCard = (creditCardSchema: ICreditCardSchema = {}): I
  * @returns {string} random currency
  */
 export const getRandomCurrency = ({ _values_ }: IValues = {}): string => {
-    if (Boolean(_values_?.length)) {
-        return getRandomValue(_values_);
-    }
-    return getRandomValue(Object.keys(CURRENCIES));
+    const values = Boolean(_values_?.length) ? _values_ : Object.keys(CURRENCIES);
+    return getRandomValue(values);
 };
 
 /**

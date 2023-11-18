@@ -1,5 +1,5 @@
 ## Randomista
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  [![npm version](https://img.shields.io/badge/version-0.0.1-green.svg)](https://www.npmjs.com/package/randomista)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  [![npm version](https://img.shields.io/badge/version-0.0.1-red.svg)](https://www.npmjs.com/package/randomista)  [![Test](https://img.shields.io/badge/coverage_test-100%25-green.svg)](./test/)
 
 `Randomista` is a TypeScript library designed to simplify the generation of random data for a variety of use cases. Whether you're testing, prototyping, or adding a touch of unpredictability to your applications, Randomista has you covered.
 
